@@ -13,21 +13,21 @@ req.include-header: Windows.h
 req.target-type: Windows
 req.target-min-winverclnt: Windows Vista, Windows XP Professional x64 Edition [desktop apps only]
 req.target-min-winversvr: Windows Server 2003 [desktop apps only]
-req.kmdf-ver: 
-req.umdf-ver: 
-req.ddi-compliance: 
-req.unicode-ansi: 
-req.idl: 
-req.max-support: 
-req.namespace: 
-req.assembly: 
-req.type-library: 
-req.lib: 
-req.dll: 
-req.irql: 
+req.kmdf-ver:
+req.umdf-ver:
+req.ddi-compliance:
+req.unicode-ansi:
+req.idl:
+req.max-support:
+req.namespace:
+req.assembly:
+req.type-library:
+req.lib:
+req.dll:
+req.irql:
 targetos: Windows
 req.typenames: LOGICAL_PROCESSOR_RELATIONSHIP
-req.redist: 
+req.redist:
 ms.custom: 19H1
 f1_keywords:
  - _LOGICAL_PROCESSOR_RELATIONSHIP
@@ -66,7 +66,7 @@ The specified logical processors  are part of the same NUMA node.
 
 ### -field RelationCache
 
-The specified logical processors  share a cache. 
+The specified logical processors  share a cache.
 
 <b>Windows Server 2003:  </b>This value is not supported until Windows Server 2003 with SP1 and Windows XP Professional x64 Edition.
 
@@ -82,9 +82,17 @@ The specified logical processors share a single <a href="/windows/desktop/ProcTh
 
 <b>Windows Server 2008, Windows Vista, Windows Server 2003 and Windows XP Professional x64 Edition:  </b>This value is not supported until Windows Server 2008 R2.
 
+### -field RelationProcessorDie
+
+The specified logical processors share a physical die.
+
 ### -field RelationNumaNodeEx
 
-Introduced in TBD - Release Iron.  Requests that the full affinity be returned. Unlike the other relation types, **RelationNumaNodeEx** is not used on input. It is simply a request for **RelationNumaNode** with full group information.
+Introduced in Windows Server 2022. Requests that the full affinity be returned. Unlike the other relation types, **RelationNumaNodeEx** is not used on output. It is simply a request for **RelationNumaNode** with full group information.
+
+### -field RelationProcessorModule
+
+The specified logical processors share a physical module.
 
 ### -field RelationAll
 
@@ -94,7 +102,7 @@ On input, retrieves information about all possible relationship types. This valu
 
 ## -remarks
 
-The value specified by this enumeration indicates the relationship represented in the corresponding [SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX](./ns-winnt-system_logical_processor_information_ex.md)  structure. 
+The value specified by this enumeration indicates the relationship represented in the corresponding [SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX](./ns-winnt-system_logical_processor_information_ex.md)  structure.
 
 
 #### Examples

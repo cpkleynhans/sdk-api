@@ -9,25 +9,25 @@ ms.assetid: 6ff16cda-c1dc-4d5c-ac60-756653cd6b07
 ms.date: 12/05/2018
 ms.keywords: '*PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX structure pointer, RelationCache, RelationGroup, RelationNumaNode, RelationProcessorCore, RelationProcessorPackage, SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX structure, _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, base.system_logical_processor_information_ex, winnt/PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, winnt/SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX'
 req.header: winnt.h
-req.include-header: 
+req.include-header:
 req.target-type: Windows
 req.target-min-winverclnt: Windows 7 [desktop apps only]
 req.target-min-winversvr: Windows Server 2008 R2 [desktop apps only]
-req.kmdf-ver: 
-req.umdf-ver: 
-req.ddi-compliance: 
-req.unicode-ansi: 
-req.idl: 
-req.max-support: 
-req.namespace: 
-req.assembly: 
-req.type-library: 
-req.lib: 
-req.dll: 
-req.irql: 
+req.kmdf-ver:
+req.umdf-ver:
+req.ddi-compliance:
+req.unicode-ansi:
+req.idl:
+req.max-support:
+req.namespace:
+req.assembly:
+req.type-library:
+req.lib:
+req.dll:
+req.irql:
 targetos: Windows
 req.typenames: SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, *PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX
-req.redist: 
+req.redist:
 ms.custom: 19H1
 f1_keywords:
  - _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX
@@ -122,6 +122,28 @@ The specified logical processors share a physical package. The <b>Processor</b> 
 
 </td>
 </tr>
+<tr>
+<td width="40%"><a id="RelationProcessorDie"></a><a id="relationprocessordie"></a><a id="RELATIONPROCESSORDIE"></a><dl>
+<dt><b>RelationProcessorDie</b></dt>
+<dt>5</dt>
+</dl>
+</td>
+<td width="60%">
+The specified logical processors share a physical die. The <b>Processor</b> member contains additional information.
+
+</td>
+</tr>
+<tr>
+<td width="40%"><a id="RelationProcessorDie"></a><a id="relationprocessordie"></a><a id="RELATIONPROCESSORDIE"></a><dl>
+<dt><b>RelationProcessorModule</b></dt>
+<dt>7</dt>
+</dl>
+</td>
+<td width="60%">
+The specified logical processors share a physical module. The <b>Processor</b> member contains additional information.
+
+</td>
+</tr>
 </table>
 
 ### -field Size
@@ -132,7 +154,7 @@ The size of the structure.
 
 ### -field DUMMYUNIONNAME.Processor
 
-A <a href="/windows/desktop/api/winnt/ns-winnt-processor_relationship">PROCESSOR_RELATIONSHIP</a> structure that describes processor affinity. This structure contains valid data only if the <b>Relationship</b> member is <b>RelationProcessorCore</b> or <b>RelationProcessorPackage</b>.
+A <a href="/windows/desktop/api/winnt/ns-winnt-processor_relationship">PROCESSOR_RELATIONSHIP</a> structure that describes processor affinity. This structure contains valid data only if the <b>Relationship</b> member is <b>RelationProcessorCore</b>, <b>RelationProcessorPackage</b>, <b>RelationProcessorDie</b> or <b>RelationProcessorModule</b>.
 
 ### -field DUMMYUNIONNAME.NumaNode
 

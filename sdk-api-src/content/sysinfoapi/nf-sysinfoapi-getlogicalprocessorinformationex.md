@@ -13,21 +13,21 @@ req.include-header: Windows.h
 req.target-type: Windows
 req.target-min-winverclnt: Windows 7 [desktop apps \| UWP apps]
 req.target-min-winversvr: Windows Server 2008 R2 [desktop apps \| UWP apps]
-req.kmdf-ver: 
-req.umdf-ver: 
-req.ddi-compliance: 
-req.unicode-ansi: 
-req.idl: 
-req.max-support: 
-req.namespace: 
-req.assembly: 
-req.type-library: 
+req.kmdf-ver:
+req.umdf-ver:
+req.ddi-compliance:
+req.unicode-ansi:
+req.idl:
+req.max-support:
+req.namespace:
+req.assembly:
+req.type-library:
 req.lib: Kernel32.lib
 req.dll: Kernel32.dll
-req.irql: 
+req.irql:
 targetos: Windows
-req.typenames: 
-req.redist: 
+req.typenames:
+req.redist:
 ms.custom: 19H1
 f1_keywords:
  - GetLogicalProcessorInformationEx
@@ -78,7 +78,7 @@ The type of relationship to retrieve. This parameter can be one of the following
 </dl>
 </td>
 <td width="60%">
-Retrieves information about logical processors  that share a cache. 
+Retrieves information about logical processors  that share a cache.
 
 </td>
 </tr>
@@ -89,7 +89,10 @@ Retrieves information about logical processors  that share a cache.
 </dl>
 </td>
 <td width="60%">
-Retrieves information about logical processors  that are part of the same NUMA node. 
+Retrieves information about logical processors  that are part of the same NUMA node.
+
+> [!NOTE]
+> Starting in Windows Server 2022, each NUMA node is assigned a primary group. Requests for **RelationNumaNode** will return **RelationNumaNode** structures that contain only a single group affinity, that of the node's primary group. For more info, see [NUMA Support](/windows/win32/procthread/numa-support).
 
 </td>
 </tr>
@@ -100,7 +103,7 @@ Retrieves information about logical processors  that are part of the same NUMA n
 </dl>
 </td>
 <td width="60%">
-Retrieves information about logical processors that share a single processor core. 
+Retrieves information about logical processors that share a single processor core.
 
 </td>
 </tr>
@@ -111,7 +114,7 @@ Retrieves information about logical processors that share a single processor cor
 </dl>
 </td>
 <td width="60%">
-Retrieves information about logical processors that share a physical package. 
+Retrieves information about logical processors that share a physical package.
 
 </td>
 </tr>
@@ -122,7 +125,40 @@ Retrieves information about logical processors that share a physical package.
 </dl>
 </td>
 <td width="60%">
-Retrieves information about logical processors that share a processor group. 
+Retrieves information about logical processors that share a processor group.
+
+</td>
+</tr>
+<tr>
+<td width="40%"><a id="RelationGroup"></a><a id="relationgroup"></a><a id="RELATIONGROUP"></a><dl>
+<dt><b>RelationProcessorDie</b></dt>
+<dt>5</dt>
+</dl>
+</td>
+<td width="60%">
+Retrieves information about logical processors that share a physical die.
+
+</td>
+</tr>
+<tr>
+<td width="40%"><a id="RelationGroup"></a><a id="relationgroup"></a><a id="RELATIONGROUP"></a><dl>
+<dt><b>RelationNumaNodeEx</b></dt>
+<dt>6</dt>
+</dl>
+</td>
+<td width="60%">
+Retrieves information about logical processors that are part of the same NUMA node with full affinity information.
+
+</td>
+</tr>
+<tr>
+<td width="40%"><a id="RelationGroup"></a><a id="relationgroup"></a><a id="RELATIONGROUP"></a><dl>
+<dt><b>RelationProcessorModule</b></dt>
+<dt>7</dt>
+</dl>
+</td>
+<td width="60%">
+Retrieves information about logical processors that share a physical module.
 
 </td>
 </tr>
@@ -133,7 +169,7 @@ Retrieves information about logical processors that share a processor group.
 </dl>
 </td>
 <td width="60%">
-Retrieves information about logical processors for all relationship types (cache, NUMA node, processor core, physical package, and processor group).
+Retrieves information about logical processors for all relationship types (cache, NUMA node, processor core, physical package, processor group and processor module).
 
 </td>
 </tr>
@@ -151,7 +187,7 @@ On input, specifies the length of the buffer pointed to by  <i>Buffer</i>, in by
 
 If the function succeeds, the return value is TRUE and at least one <a href="/windows/win32/api/winnt/ns-winnt-system_logical_processor_information_ex">SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX</a> structure is written to the output buffer.
 
-If the function fails, the return value is FALSE. To get extended error information, call 
+If the function fails, the return value is FALSE. To get extended error information, call
 <a href="/windows/desktop/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</a>.
 
 ## -remarks
@@ -163,9 +199,9 @@ When this function is called with a relationship type of <b>RelationProcessorCor
 To compile an application that uses this function, set _WIN32_WINNT &gt;= 0x0601. For more information, see <a href="/windows/desktop/WinProg/using-the-windows-headers">Using the Windows Headers</a>.
 
 > [!NOTE]
-> Starting with *TBD Release Iron*, the behavior of this and other NUMA functions has been modified to better support systems with nodes containing more that 64 processors. For more information about this change, including information about enabling the old behavior of this API, see [NUMA Support](/windows/win32/procthread/numa-support).
+> Starting with *Windows Server 2022*, the behavior of this and other NUMA functions has been modified to better support systems with nodes containing more that 64 processors. For more information about this change, including information about enabling the old behavior of this API, see [NUMA Support](/windows/win32/procthread/numa-support).
 
-### Behavior starting with TBD Release Iron
+### Behavior starting with Windows Server 2022
 
 Requests for [RelationNumaNode](../winnt/ne-winnt-logical_processor_relationship.md) will return [NUMA_NODE_RELATIONSHIP](../winnt/ns-winnt-numa_node_relationship.md) structures that contain only the affinity of the node within it's primary group. The [GroupCount](../winnt/ns-winnt-numa_node_relationship.md) value will be 1 and the structure size is fixed.
 
